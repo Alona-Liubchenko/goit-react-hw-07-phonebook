@@ -3,6 +3,8 @@ import { nanoid } from 'nanoid';
 import { ContactForms } from './ContactForm/ContactForm';
 import ContactList from './ContactList/ContactList';
 import Filter from './Filter/Filter';
+import { Box, Title, Heading } from './App.styled';
+
 export class App extends Component {
   state = {
     contacts: [
@@ -20,7 +22,14 @@ export class App extends Component {
       name,
       number,
     };
-
+    const duplicate = this.state.contacts.find(
+      contact => contact.name === name
+    );
+    // console.log(duplicate);
+    if (duplicate) {
+      alert(`${name} is already in contakts`);
+      return;
+    }
     this.setState(prevState => ({
       contacts: [contact, ...prevState.contacts],
     }));
@@ -45,17 +54,16 @@ export class App extends Component {
     const visibleContact = this.getVisibleFilter();
 
     return (
-      <div>
-        <h1>Phonebook</h1>
+      <Box>
+        <Title>Phonebook</Title>
         <ContactForms onSubmit={this.addContact} />
-        <h2>Contacts</h2>
+        <Heading>Contacts</Heading>
         <Filter value={filter} onChange={this.changeFilter} />
-
         <ContactList
           contacts={visibleContact}
           onDeleteContact={this.deleteContact}
         />
-      </div>
+      </Box>
     );
   }
 }
