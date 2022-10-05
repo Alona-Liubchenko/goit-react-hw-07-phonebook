@@ -6,13 +6,14 @@ import { List } from './ContactList.styled';
 const ContactList = ({ contacts, onDeleteContact }) => (
   <List>
     {contacts.map(({ id, name, number }) => (
-      <ContactListItem
-        key={id}
-        id={id}
-        name={name}
-        number={number}
-        onDeleteContact={onDeleteContact}
-      />
+      <li key={id}>
+        <ContactListItem
+          id={id}
+          name={name}
+          number={number}
+          onDeleteContact={onDeleteContact}
+        />
+      </li>
     ))}
   </List>
 );
