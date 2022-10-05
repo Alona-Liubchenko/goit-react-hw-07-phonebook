@@ -49,6 +49,15 @@ export class App extends Component {
       contact.name.toLowerCase().includes(normalizedFilter)
     );
   };
+  componentDidMount() {
+    console.log('App component Did Mount');
+  }
+  componentDidUpdate(prevProps, prevState) {
+    console.log('App component Did Update');
+    if (this.state.contacts !== prevState.contacts) {
+      console.log('App');
+    }
+  }
   render() {
     const { filter } = this.state;
     const visibleContact = this.getVisibleFilter();
