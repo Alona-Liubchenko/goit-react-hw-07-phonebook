@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 import { Form, Field } from 'formik';
 export const Forma = styled(Form)`
+  width: 100%;
   display: block;
   justify-content: space-between;
+  flex-wrap: nowrap;
 `;
 export const Label = styled.label`
   width: 100%;
@@ -10,13 +12,14 @@ export const Label = styled.label`
   font-weight: 500;
 `;
 export const Input = styled(Field)`
-  width: 500px;
   border-radius: 10px;
   padding: 5px 15px;
   font-size: 18px;
   font-weight: 500;
+  flex-wrap: wrap;
+
   height: 40px;
-  margin: 15px;
+  margin: 15px 0;
   outline: none;
   cursor: pointer;
   &:hover,
