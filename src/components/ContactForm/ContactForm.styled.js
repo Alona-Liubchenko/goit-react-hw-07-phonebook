@@ -4,7 +4,7 @@ export const Forma = styled(Form)`
   width: 100%;
   display: block;
   justify-content: space-between;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
 `;
 export const Label = styled.label`
   width: 100%;
@@ -18,7 +18,8 @@ export const Input = styled(Field)`
   font-weight: 500;
   flex-wrap: wrap;
 
-  height: 40px;
+  height: 100%;
+  width: 90%;
   margin: 15px 0;
   outline: none;
   cursor: pointer;
