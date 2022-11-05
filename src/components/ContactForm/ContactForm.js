@@ -1,12 +1,16 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { addContact } from 'redux/contactsSlice';
 import { Formik } from 'formik';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { Forma, Label, Input, Btn } from './ContactForm.styled';
 
-export const ContactForms = ({ onSubmit }) => {
+export const ContactForms = () => {
+  const dispatch = useDispatch();
   const handleSubmit = (values, { resetForm }) => {
-    onSubmit(values.name, values.number);
-    console.log(values.name, values.number);
+    // onSubmit(values.name, values.number);
+    dispatch(addContact(values.name, values.number));
+
     resetForm();
   };
   return (
@@ -34,6 +38,6 @@ export const ContactForms = ({ onSubmit }) => {
   );
 };
 
-ContactForms.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-};
+// ContactForms.propTypes = {
+//   onSubmit: PropTypes.func.isRequired,
+// };
