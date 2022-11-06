@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/contactsSlice';
 import { Formik } from 'formik';
 // import PropTypes from 'prop-types';
@@ -7,12 +7,18 @@ import { Forma, Label, Input, Btn } from './ContactForm.styled';
 
 export const ContactForms = () => {
   const dispatch = useDispatch();
+  const contacts = useSelector(state => state.contacts);
   const handleSubmit = (values, { resetForm }) => {
-    // onSubmit(values.name, values.number);
-    dispatch(addContact(values.name, values.number));
-
+    const duplicate = contacts.find(contact => contact.name === values.name);
+    if (duplicate) {
+      alert(`${values.name} is already in contakts`);
+      return;
+    } else {
+      dispatch(addContact(values.name, values.number));
+    }
     resetForm();
   };
+
   return (
     <Formik initialValues={{ name: '', number: '' }} onSubmit={handleSubmit}>
       <Forma autoComplete="off">
