@@ -9,6 +9,7 @@ export const ContactForms = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(getContacts);
   const handleSubmit = (values, { resetForm }) => {
+    resetForm();
     const duplicate = contacts.find(contact => contact.name === values.name);
 
     if (duplicate) {
@@ -16,7 +17,6 @@ export const ContactForms = () => {
       return;
     }
     dispatch(addContact(values.name, values.number));
-    resetForm();
   };
 
   return (
