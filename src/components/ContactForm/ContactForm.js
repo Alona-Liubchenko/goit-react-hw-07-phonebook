@@ -2,20 +2,20 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/contactsSlice';
 import { Formik } from 'formik';
-// import PropTypes from 'prop-types';
 import { Forma, Label, Input, Btn } from './ContactForm.styled';
+import { getContacts } from 'redux/selectors';
 
 export const ContactForms = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(state => state.contacts);
+  const contacts = useSelector(getContacts);
   const handleSubmit = (values, { resetForm }) => {
     const duplicate = contacts.find(contact => contact.name === values.name);
+
     if (duplicate) {
       alert(`${values.name} is already in contakts`);
       return;
-    } else {
-      dispatch(addContact(values.name, values.number));
     }
+    dispatch(addContact(values.name, values.number));
     resetForm();
   };
 
@@ -43,7 +43,3 @@ export const ContactForms = () => {
     </Formik>
   );
 };
-
-// ContactForms.propTypes = {
-//   onSubmit: PropTypes.func.isRequired,
-// };
