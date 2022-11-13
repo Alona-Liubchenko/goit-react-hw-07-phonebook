@@ -9,10 +9,8 @@ export const ContactForms = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
   const handleSubmit = (values, { resetForm }) => {
-    console.log(values);
     resetForm();
     const duplicate = contacts.find(contact => contact.name === values.name);
-
     if (duplicate) {
       alert(`${values.name} is already in contakts`);
       return;

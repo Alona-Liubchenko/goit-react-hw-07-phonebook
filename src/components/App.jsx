@@ -11,7 +11,6 @@ export const App = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
-  // const { items, isLoading, error } = useSelector(getContacts);
   useEffect(() => {
     dispatch(fetchContacts());
   }, [dispatch]);
@@ -19,9 +18,9 @@ export const App = () => {
     <Box>
       <Title>Phonebook</Title>
       <ContactForms />
-      {isLoading && !error && <b>Request in progress...</b>}
       <Heading>Contacts</Heading>
       <Filter />
+      {isLoading && !error && <b>Request in progress...</b>}
       <ContactList />
     </Box>
   );
